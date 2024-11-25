@@ -21,13 +21,15 @@ int main(){
   pid_t p,p2;
   p = fork();
   if(p<0){
-    err();
+    perror("fork fail");
+  exit(1);
   }
   else if(p!=0){
     printf("hi parent\n");
     p2 = fork();
   }
   if(p==0 || p2==0){
+
     printf("hi child\n");
   }
 
