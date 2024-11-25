@@ -11,6 +11,25 @@
 #include <signal.h>
 #include <sys/wait.h>
 
+int err(){
+    printf("errno %d\n",errno);
+    printf("%s\n",strerror(errno));
+    exit(1);
+}
+
 int main(){
+  pid_t p,p2;
+  p = fork();
+  if(p<0){
+    err();
+  }
+  else if(p!=0){
+    printf("hi parent\n");
+    p2 = fork();
+  }
+  if(p==0 || p2==0){
+    printf("hi child\n");
+  }
+
   return 0;
 }
